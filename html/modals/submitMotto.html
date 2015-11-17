@@ -1,0 +1,20 @@
+<div class="modal fade" id="modal-submitMotto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Motto einreichen</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="action" value="submitMotto">
+                    <input class="form-control input-lg" type="text" name="motto" placeholder="Motto-Text" maxlength="256" autocomplete="off">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                    <button type="submit" class="btn btn-primary">Einreichen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

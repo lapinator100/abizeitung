@@ -1,0 +1,80 @@
+<nav class="navbar navbar-inverse topbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <banana class="navbar-brand">Abizeitung 2016</banana>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                <li><a href="#pupils" data-toggle="tab">Schüler</a></li>
+                <li><a href="#teachers" data-toggle="tab">Lehrer</a></li>
+                <li><a href="#quotes" data-toggle="tab">Sprüche</a></li>
+                <li><a href="#rumours" data-toggle="tab">Gerüchte</a></li>
+                <li><a href="#myths" data-toggle="tab">Mythen</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/" method="post">
+                        <input type="hidden" name="action" value="logout">
+                        <p class="navbar-btn" style="padding: 0px; padding-left: 15px; color: white;">
+                            Angemeldet als <strong><?=$_SESSION['name']?></strong>
+                            <button type="submit" class="btn btn-default" style="margin-left: 10px;">Abmelden</button>
+                        </p>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div id="alertContainer" class="col-md-5">
+        <?php renderAlerts(); ?>
+    </div>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="home">
+            <?php include($_SERVER['DOCUMENT_ROOT'].'/html/tabs/home.html'); ?>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="pupils">
+            <?php
+                $tabType = 'pupils';
+                $tabTitle = 'Schüler';
+                $tabList = $model->getPupils();
+
+                include($_SERVER['DOCUMENT_ROOT'].'/html/tabs/people.html');
+            ?>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="teachers">
+            <?php
+                $tabType = 'teachers';
+                $tabTitle = 'Lehrer';
+                $tabList = $model->getTeachers();
+
+                include($_SERVER['DOCUMENT_ROOT'].'/html/tabs/people.html');
+            ?>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="quotes">
+            <?php include($_SERVER['DOCUMENT_ROOT'].'/html/tabs/quotes.html'); ?>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="rumours">
+            <?php include($_SERVER['DOCUMENT_ROOT'].'/html/tabs/rumours.html'); ?>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="myths">
+            <?php include($_SERVER['DOCUMENT_ROOT'].'/html/tabs/myths.html'); ?>
+        </div>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/modals/submitMotto.html'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/modals/removeMotto.html'); ?>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/modals/removeConfirmation.html'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'].'/html/modals/add.html'); ?>
+</div>

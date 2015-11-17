@@ -1,0 +1,67 @@
+<div id="personContainer">
+    <h2></h2>
+
+    <div class="panel panel-default">
+        <div class="statisticsPanel panel-heading">
+            <h3 class="panel-title">Statistiken</h3>
+        </div>
+        <div class="statisticsPanel panel-body">
+            <div id="statisticsContainer">
+                <p class="lead" style="margin: 0px;"></p>
+            </div>
+        </div>
+        
+        <div class="panel-heading">
+            <h3 class="panel-title">Spitzname</h3>
+        </div>
+        <div class="panel-body">
+            <div id="nicknamesContainer">
+                <p class="lead" style="margin: 0px;">
+                    <span></span>
+                    &nbsp;
+                    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#modal-add" onclick="prepareAddition(submitComment, '<?=$tabType?>_nicknames');">Hinzufügen</button></p>
+            </div>
+        </div>
+        
+        <?php if ($tabType === 'pupils'): ?>
+            <div class="panel-heading">
+                <h3 class="panel-title">Wird später mal...</h3>
+            </div>
+            <div class="panel-body">
+                <div id="futureProfessionsContainer">
+                    <p class="lead" style="margin: 0px;">
+                        <span>Test, 42</span>
+                        &nbsp;
+                        <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#modal-add" onclick="prepareAddition(submitComment, 'pupils_futureProfessions');">Hinzufügen</button></p>
+                </div>
+            </div>
+        <?php endif; ?>
+        
+        <div class="panel-heading">
+            <h3 class="panel-title">Steckbrief</h3>
+        </div>
+        <div class="panel-body">
+            <div id="commentsContainer">
+                <ul></ul>
+                
+                <h3 id="commentsPlaceholder">
+                    <span>Name</span> wurde noch nicht kommentiert.<br>
+                    Sei der/die Erste!
+                </h3>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <form action="/" method="post" id="form-comment">
+                <input type="hidden" id="type">
+                <input type="hidden" id="id">
+                
+                <div class="input-group">
+                    <input id="comment" type="text" class="form-control" placeholder="Kommentar hinzufügen..." autocomplete="off" required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary inline" type="submit">Kommentieren</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

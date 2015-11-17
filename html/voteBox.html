@@ -1,0 +1,24 @@
+<div class="voteBox" data-toggle="tooltip" title="Votes: <?=$score?>">
+    <form action="/" method="post">
+        <input type="hidden" name="action" value="vote">
+        <input type="hidden" name="for" value="<?=$for?>">
+        <input type="hidden" name="item" value="<?=$id?>">
+        <input type="hidden" name="vote" value="<?=$upvoted ? 'no' : 'up' ?>">
+        
+        <div>
+            <button type="submit" class="btn btn-default glyphicon glyphicon-menu-up<?=$upvoted ? ' active' : '' ?>"></button>
+            <input type="hidden" class="btn">
+        </div>
+    </form>
+    <!--<form action="/" method="post">
+        <input type="hidden" name="action" value="vote">
+        <input type="hidden" name="for" value="<?=$for?>">
+        <input type="hidden" name="item" value="<?=$id?>">
+        <input type="hidden" name="vote" value="<?=$downvoted ? 'no' : 'down' ?>">
+        
+        <div class="btn-group-vertical">
+            <input type="hidden" class="btn">
+            <button type="submit" class="btn btn-default glyphicon glyphicon-menu-down<?=$downvoted ? ' active' : '' ?>"></button>
+        </div>
+    </form>-->
+</div>

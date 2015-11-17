@@ -1,0 +1,111 @@
+* {
+    outline: none !important;
+}
+p {
+    margin: 0px;
+}
+.tooltip {
+    position: fixed;
+}
+.topbar {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+}
+
+#loginForm {
+    max-width: 420px;
+}
+
+#alertContainer {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+
+    z-index: 4242;
+}
+
+#profilePicture {
+    padding: 0px;
+    margin: -10px;
+    margin-right: 15px;
+    margin-left: 5px;
+
+    height: 42px;
+    width: 42px;
+}
+
+#mottos {
+    margin-top: 42px;
+}
+.mottoBox {
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    overflow: auto;
+    display: block;
+}
+.voteBox {
+    width: 42px;
+
+    float: left;
+}
+.voteBox button {
+    display: inline;
+}
+.motto {
+    width: calc(100% - 60px);
+
+    float: right;
+}
+.motto blockquote {
+    width: calc(100% - 60px);
+}
+
+#personPlaceholder {
+    margin-top: 100px;
+
+    text-align: center;
+    color: darkgrey;
+}
+#personContainer {
+    display: none;
+}
+#personContainer h2 small {
+    margin-left: 10px;
+}
+#personContainer #commentsPlaceholder {
+    margin: 25px;
+
+    text-align: center;
+    color: darkgrey;
+}
+#personContainer ul {
+    font-size: 16px;
+}
+#personContainer li {
+    margin-top: 10px;
+}
+
+#quotesContainer ul, #rumoursContainer ul, #mythsContainer ul {
+    padding: 0px;
+
+    font-size: 18px;
+    list-style-type: none;
+}
+#quotesContainer li, #rumoursContainer li, #mythsContainer li {
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #dbdbdb;
+}
+#quotesContainer li:last-child, #rumoursContainer li:last-child, #mythsContainer li:last-child {
+    border-bottom: none;
+}
+
+.statisticsPanel {
+    display: none;
+}

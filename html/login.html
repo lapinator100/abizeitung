@@ -1,0 +1,35 @@
+<div id="alertContainer" class="col-md-5" style="top: 12px; right: 0px;">
+    <?php renderAlerts(); ?>
+</div>
+
+<div id="loginForm" class="container">
+    <div class="visible-xs" style="height: 20px;"></div>
+    <div class="hidden-xs" style="height: 150px;"></div>
+
+    <div style="margin-top: 50px;">
+        <center>
+            <h2>Abizeitung 2016</h2>
+            <br>
+
+            <?php if (empty($_SERVER['HTTPS'])): ?>
+                <p>
+                    Diese Website über eine <a href="https://abizeitung.ddns.net/">sichere Verbindung verwenden</a>
+                </p>
+                <br>
+            <?php endif; ?>
+
+            <form action="/" method="post" id="form-login">
+                <input type="hidden" name="action" value="login">
+                <input type="password" class="form-control input-lg" name="loginCode" id="loginCode" placeholder="Login-Code" data-toggle="tooltip" title="Solltest Du keinen Login-Code haben oder Deiner nicht funktionieren, wende dich bitte an Steffen" maxlength="8" required autofocus>
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Anmelden</button>
+                <p style="margin: 8px;">- oder -</p>
+                <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal-whatsAppLogin">WhatsApp-Login</button>
+            </form>
+        </center>
+    </div>
+</div>
+
+<br>
+
+<?php include($_SERVER['DOCUMENT_ROOT'].'/html/modals/whatsAppLogin.html'); ?>

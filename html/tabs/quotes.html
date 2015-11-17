@@ -1,0 +1,34 @@
+<div class="row">
+    <h2 style="margin-left: 10px;">Sprüche</h2>
+    
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="/" method="post" id="form-quote">
+                <div class="input-group">
+                    <input id="class" type="text" class="form-control" placeholder="Kurs" autocomplete="off" style="width: 25%;" maxlength="32" required>
+                    <input id="quote" type="text" class="form-control" placeholder="Spruch" autocomplete="off" style="width: 75%;" required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary inline" type="submit">Hinzufügen</button>
+                    </span>
+                </div>
+            </form>
+            
+            <br>
+            
+            <div id="quotesContainer">
+                <ul>
+                    <?php foreach($quotes as $quote): ?>
+                        <li data-id="<?=$quote['id']?>">
+                            <?=$quote['text']?>
+                            <?php if ($quote['own']): ?>
+                                <button class="btn btn-danger btn-xs" style="margin-left: 5px;" data-toggle="modal" data-target="#modal-removeConfirmation" onclick="prepareRemoval(removeQuote);">Löschen</button>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>

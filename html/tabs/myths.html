@@ -1,0 +1,33 @@
+<div class="row">
+    <h2 style="margin-left: 10px;">Kennst du den Mythos...</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="/" method="post" id="form-myth">
+                <div class="input-group">
+                    <input id="myth" type="text" class="form-control" placeholder="Mythos" autocomplete="off" required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary inline" type="submit">Hinzufügen</button>
+                    </span>
+                </div>
+            </form>
+
+            <br>
+
+            <div id="mythsContainer">
+                <ul>
+                    <?php foreach($myths as $myth): ?>
+                        <li data-id="<?=$myth['id']?>">
+                            <?=$myth['text']?>
+                            <?php if ($myth['own']): ?>
+                                <button class="btn btn-danger btn-xs" style="margin-left: 5px;" data-toggle="modal" data-target="#modal-removeConfirmation" onclick="prepareRemoval(removeMyth);">Löschen</button>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>

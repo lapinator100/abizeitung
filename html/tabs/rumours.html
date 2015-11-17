@@ -1,0 +1,33 @@
+<div class="row">
+    <h2 style="margin-left: 10px;">Es ist (k)ein Gerücht, dass...</h2>
+    
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="/" method="post" id="form-rumour">
+                <div class="input-group">
+                    <input id="rumour" type="text" class="form-control" placeholder="&quot;Gerücht&quot;" autocomplete="off" required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary inline" type="submit">Hinzufügen</button>
+                    </span>
+                </div>
+            </form>
+            
+            <br>
+            
+            <div id="rumoursContainer">
+                <ul>
+                    <?php foreach($rumours as $rumour): ?>
+                        <li data-id="<?=$rumour['id']?>">
+                            <?=$rumour['text']?>
+                            <?php if ($rumour['own']): ?>
+                                <button class="btn btn-danger btn-xs" style="margin-left: 5px;" data-toggle="modal" data-target="#modal-removeConfirmation" onclick="prepareRemoval(removeRumour);">Löschen</button>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>

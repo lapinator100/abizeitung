@@ -1,0 +1,30 @@
+<div class="modal fade" id="modal-whatsAppLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">WhatsApp-Login</h4>
+            </div>
+            <div class="modal-body" id="whatsAppLoginUI-1">
+                <p class="lead">
+                    Lass dir einen Code per WhatsApp zusenden, mit dem du dich ganz einfach einmalig anmelden kannst. Deine Handynummer muss vorher hinterlegt worden sein.
+                </p>
+                <input type="text" class="form-control input-lg" id="whatsAppLogin-input" placeholder="Name oder Handynummer">
+                <p style="margin-top: 3px;"><i>Name: Erster Vorname, danach Nachname</i></p>
+            </div>
+            <div class="modal-body" id="whatsAppLoginUI-2" style="display: none;">
+                <center>
+                    <p class="lead">
+                        Gib nun einfach deinen Code ein.
+                    </p>
+                    <input type="text" max-length="4" class="form-control input-lg" id="whatsAppLogin-code-input" placeholder="Code" style="max-width: 200px; font-size: 32px; text-align: center;">
+                    <br>
+                </center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                <button type="button" class="btn btn-primary" onclick="nextWhatsAppLoginStep();">Weiter</button>
+            </div>
+        </div>
+    </div>
+</div>

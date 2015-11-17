@@ -1,0 +1,33 @@
+<h1>Abi-Motto <small>Voting</small></h1>
+
+<button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modal-submitMotto">Motto einreichen</button>
+
+<div id="mottos">
+    <?php foreach($mottos as $motto): ?>
+    <div class="mottoBox">
+        <?php
+            $for = 'motto';
+            $id = $motto['id'];
+            $score = $motto['score'];
+            $upvoted = $motto['upvoted'];
+            $downvoted = $motto['downvoted'];
+            
+            include($_SERVER['DOCUMENT_ROOT'].'/html/voteBox.html');
+        ?>
+        
+        <div class="motto">
+            <blockquote>
+                <p><?=$motto['text']?></p>
+                <footer>
+                    <?=$motto['author']?>
+                    <?php if ($motto['own']): ?>
+                        <button type="button" class="btn btn-danger btn-xs" style="margin-left: 5px;" data-toggle="modal" data-target="#modal-removeMotto" data-motto-id="<?=$motto['id']?>">Löschen</button>
+                    <?php endif; ?>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+<br>
