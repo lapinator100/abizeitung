@@ -2,20 +2,20 @@
 
 <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modal-submitMotto">Motto einreichen</button>
 
-<div id="mottos">
+<div class="voting">
     <?php foreach($mottos as $motto): ?>
-    <div class="mottoBox">
+    <div>
         <?php
             $for = 'motto';
             $id = $motto['id'];
             $score = $motto['score'];
             $upvoted = $motto['upvoted'];
             $downvoted = $motto['downvoted'];
-            
+
             include($_SERVER['DOCUMENT_ROOT'].'/html/voteBox.html');
         ?>
-        
-        <div class="motto">
+
+        <div class="voting-content">
             <blockquote>
                 <p><?=$motto['text']?></p>
                 <footer>

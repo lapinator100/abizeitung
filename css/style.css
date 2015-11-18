@@ -36,10 +36,10 @@ p {
     width: 42px;
 }
 
-#mottos {
+.voting {
     margin-top: 42px;
 }
-.mottoBox {
+.voting > div {
     position: relative;
     width: 100%;
     height: auto;
@@ -47,21 +47,21 @@ p {
     overflow: auto;
     display: block;
 }
-.voteBox {
-    width: 42px;
-
-    float: left;
-}
-.voteBox button {
-    display: inline;
-}
-.motto {
+.voting-content {
     width: calc(100% - 60px);
 
     float: right;
 }
-.motto blockquote {
+.voting-content blockquote {
     width: calc(100% - 60px);
+}
+.voting-box {
+    width: 42px;
+
+    float: left !important;
+}
+.voting-box button {
+    display: inline;
 }
 
 #personPlaceholder {
