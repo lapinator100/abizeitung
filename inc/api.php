@@ -177,7 +177,11 @@
         $item = $_POST['item'];
         $vote = $_POST['vote'];
 
-        if (!$model->vote($for, $item, $user_id, 'up')) {
+        if ($vote !== 'up') {
+          $vote = 'no';
+        }
+
+        if (!$model->vote($for, $item, $user_id, $vote)) {
             addAlert('danger', ERROR_VOTING_FAILED);
         }
 
