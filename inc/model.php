@@ -201,6 +201,27 @@
         }
 
 
+        function getDestinations() {
+            $destinations = array(
+                array(
+                    'id' => 0,
+                    'text' => 'Bulgarien',
+                    'score' => $this->getVoteScore('destination', 0),
+                    'ownVote' => $this->getVote('destination', 0, $_SESSION['id'])
+                ), array(
+                    'id' => 1,
+                    'text' => 'Mallorca',
+                    'score' => $this->getVoteScore('destination', 1),
+                    'ownVote' => $this->getVote('destination', 1, $_SESSION['id'])
+                )
+            );
+
+            uasort($destinations, array($this, 'compareVoteScore'));
+
+            return $destinations;
+        }
+
+
         function getMottos() {
             $mottos = array();
 

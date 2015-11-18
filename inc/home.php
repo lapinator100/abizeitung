@@ -1,4 +1,5 @@
 <?php
+    $destinations = $model->getDestinations();
     $mottos = $model->getMottos();
     $quotes = $model->getQuotes();
     $rumours = $model->getRumours();

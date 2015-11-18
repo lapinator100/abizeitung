@@ -1,4 +1,33 @@
-<h1>Abi-Motto <small>Voting</small></h1>
+<h1>Abifahrt <small>Aber wohin?</small></h1>
+<blockquote>
+    <p>Anmerkung! Mallorca für die Fans des Balermanns, jedoch sollte Bulgarien nicht außer Acht gelassen werden, da es von anderen Schulen deutlich häufiger gewählt wurde und lockerer, sowie im Reisepreis und vor Ort günstiger ist.
+Bitte nur bei wirklichem Teilnahmeinteresse abstimmen!!</p>
+    <footer>Ulf Kreibohm</footer>
+</blockquote>
+
+<div class="voting">
+    <?php foreach($destinations as $destination): ?>
+    <div>
+        <?php
+            $for = 'destination';
+            $id = $destination['id'];
+            $score = $destination['score'];
+            $upvoted = $destination['ownVote'] === 'up';
+            $downvoted = $destination['ownVote'] === 'down';
+
+            include($_SERVER['DOCUMENT_ROOT'].'/html/voteBox.html');
+        ?>
+
+        <div class="voting-content">
+            <blockquote>
+                <h3 style="margin: 0;"><?=$destination['text']?></h3>
+            </blockquote>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+<h1>Abimotto <small>Voting</small></h1>
 
 <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#modal-submitMotto">Motto einreichen</button>
 
