@@ -408,6 +408,115 @@
         }
 
 
+        function getVotings() {
+            $votings = array();
+
+            if ($votingsQuery = $this->db->prepare("SELECT id, title FROM votings;")) {
+                $votingsQuery->bind_result($voting_id, $title);
+
+                $result = $votingsQuery->execute();
+                $votingsQuery->store_result();
+
+                while ($votingsQuery->fetch()) {
+                    array_push($votings, array(
+                        'id' => $voting_id,
+                        'title' => utf8_encode($title)
+                    ));
+                }
+
+                $votingsQuery->close();
+            }
+
+            return $votings;
+        }
+
+        function getVoting($id) {
+            $id = $this->db->real_escape_string($id);
+
+            $voting = array();
+
+            if ($votingQuery = $this->db->prepare("SELECT id, title, type FROM votings WHERE id = ?;")) {
+                $votingQuery->bind_param('i', $id);
+                $votingQuery->bind_result($voting_id, $title, $type);
+
+                $result = $votingQuery->execute();
+                $votingQuery->store_result();
+
+                if ($votingQuery->fetch()) {
+                    $votingQuery->close();
+
+                    return array(
+                      'id' => $voting_id,
+                      'title' => $title,
+                      'type' => $type,
+                      'suggestions' => $this->getSuggestions($voting_id)
+                    );
+                }
+
+                $votingQuery->close();
+            }
+
+            return false;
+        }
+
+
+        function getSuggestions($id) {
+            $id = $this->db->real_escape_string($id);
+
+            $suggestions = array();
+
+            if ($suggestionsQuery = $this->db->prepare("SELECT id, user_id, text FROM suggestions WHERE voting_id = ?;")) {
+                $suggestionsQuery->bind_param('i', $id);
+                $suggestionsQuery->bind_result($voting_id, $user_id, $text);
+
+                $result = $suggestionsQuery->execute();
+                $suggestionsQuery->store_result();
+
+                while ($suggestionsQuery->fetch()) {
+                    $suggestion = array();
+                    $suggestion['id'] = $voting_id;
+                    $suggestion['user'] = $this->getUser($user_id)['name'];
+                    $suggestion['text'] = utf8_encode($text);
+                    $suggestion['vote'] = $this->getVote($id, $voting_id, $_SESSION['id']);
+                    $suggestion['score'] = $this->getVoteScore($id, $voting_id);
+
+                    array_push($suggestions, $suggestion);
+                }
+
+                $suggestionsQuery->close();
+            }
+
+            uasort($suggestions, array($this, 'compareVoteScore'));
+
+            return array_values($suggestions);
+        }
+
+        function submitSuggestion($id, $user_id, $text) {
+            $id = $this->db->real_escape_string($id);
+            $user_id = $this->db->real_escape_string($user_id);
+            $text = $this->db->real_escape_string(htmlentities($text, ENT_QUOTES));
+            $author_id = $_SESSION['id'];
+
+            if ($suggestionQuery = $this->db->prepare("INSERT INTO suggestions (voting_id, author_id, user_id, text) VALUES (?, ?, ?, ?);")) {
+                $suggestionQuery->bind_param('iiis', $id, $author_id, $user_id, $text);
+
+                $result = $suggestionQuery->execute();
+
+                if ($result) {
+                    $this->log('submitSuggestion', $user_id, 'successful', $id.','.$user_id.','.$text);
+
+                    return $suggestionQuery->insert_id;
+                }
+
+                $suggestionQuery->close();
+            }
+
+            $this->log('submitSuggestion', $user_id, 'failed', $id.','.$user_id.','.$text);
+
+            return false;
+        }
+
+
         function getPupils() {
             $pupils = array();
 

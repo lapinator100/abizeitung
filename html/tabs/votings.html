@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-4">
+        <h2>Abstimmungen</h2>
+
+        <div class="list-group votings-list">
+            <?php foreach ($votings as $item): ?>
+                <a href="#!" class="list-group-item" data-id="<?=$item['id']?>">
+                    <?=$item['title']?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <h2 id="votingPlaceholder">
+            Wähle eine Abstimmung aus, um zu beginnen
+        </h2>
+
+        <div id="votingContainer">
+            <h2></h2>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="suggestionsContainer">
+                        <div></div>
+
+                        <h3 id="suggestionsPlaceholder">
+                            Es wurde noch niemand als "<span>Name</span>" vorgeschlagen.<br>
+                            Sei der/die Erste!
+                        </h3>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <form action="/" method="post" id="form-suggestion">
+                        <input type="hidden" id="id">
+
+                        <div class="input-group">
+                            <select class="form-control" id="user_id">
+                              <option value="" disabled selected>Schüler wählen</value>
+                              <?php foreach ($model->getPupils() as $item): ?>
+                                <option value="<?=$item['id']?>"><?=$item['name']?></option>
+                              <?php endforeach; ?>
+                            </select>
+                            <input id="text" type="text" class="form-control" placeholder="Person(en) vorschlagen..." autocomplete="off">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary inline" type="submit">Vorschlagen</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>

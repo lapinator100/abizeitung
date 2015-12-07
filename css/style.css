@@ -64,25 +64,34 @@ p {
     display: inline;
 }
 
-#personPlaceholder {
+.voting-item span {
+    margin-left: 16px;
+
+    font-size: 18px;
+}
+.voting-item button {
+  margin-bottom: 8px;
+}
+
+#personPlaceholder, #votingPlaceholder {
     margin-top: 100px;
 
     text-align: center;
     color: darkgrey;
 }
-#personContainer {
+#personContainer, #votingContainer {
     display: none;
 }
-#personContainer h2 small {
+#personContainer h2 small, #votingContainer h2 small {
     margin-left: 10px;
 }
-#personContainer #commentsPlaceholder {
+#personContainer #commentsPlaceholder, #votingContainer #suggestionsPlaceholder {
     margin: 25px;
 
     text-align: center;
     color: darkgrey;
 }
-#personContainer ul {
+#personContainer ul, #votingContainer div {
     font-size: 16px;
 }
 #personContainer li {

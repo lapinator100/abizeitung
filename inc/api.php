@@ -22,6 +22,7 @@
     $actions = array('login', 'requestWhatsAppLoginCode', 'whatsAppLogin', 'logout',
                      'updateStatistic',
                      'submitMotto', 'removeMotto', 'vote',
+                     'getVoting', 'submitSuggestion', 'voteForSuggestion',
                      'getPerson', 'submitComment', 'removeComment',
                      'submitQuote', 'removeQuote',
                      'submitRumour', 'removeRumour',
@@ -182,6 +183,66 @@
         }
 
         render();
+    }
+
+    function getVoting() {
+        global $model;
+
+        $id = $_POST['id'];
+
+        $output = array();
+        $output['voting'] = array('suggestions' => array(),
+                                  'title' => '',
+                                  'type' => '');
+
+        $result = $model->getVoting($id);
+        if ($result) {
+            $output['voting'] = $result;
+        } else {
+            addAlert('danger', ERROR_GETPERSON_FAILED);
+        }
+
+        renderAsJson($output);
+    }
+
+    function submitSuggestion() {
+        global $model;
+
+        $id = $_POST['id'];
+        $user_id = $_POST['user_id'];
+        $text = $_POST['text'];
+
+        $output = array();
+        $result = $model->submitSuggestion($id, $user_id, $text);
+
+        if ($result) {
+            $user = $model->getUser($user_id)['name'];
+            $output['suggestion'] = array('id' => $result,
+                                          'user' => $user,
+                                          'text' => $text);
+        } else {
+            $output['suggestion'] = false;
+        }
+
+        renderAsJson($output);
+    }
+
+    function voteForSuggestion() {
+        global $model;
+
+        $user_id = $_SESSION['id'];
+        $for = $_POST['voting_id'];
+        $item = $_POST['id'];
+        $vote = $_POST['vote'] == 'up' ? 'up' : 'no';
+
+        if (!$model->vote($for, $item, $user_id, $vote)) {
+            addAlert('danger', ERROR_VOTING_FAILED);
+            renderAsJson(array('success' => false));
+
+            return;
+        }
+
+        renderAsJson(array('success' => true));
     }
 
 
